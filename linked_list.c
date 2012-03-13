@@ -4,6 +4,7 @@
 #include <linked_list.h>
 
 extern void add_new_node(int);
+extern void remove_node(int);
 extern void print_out_ll();
 
 struct node *head = NULL;
@@ -28,6 +29,34 @@ extern void add_new_node(int data) {
 
 }
 
+extern void remove_node(int data) {	
+
+	temp = head;
+
+	/*Head node has to be deleted*/
+	if(temp->data == data) {
+		temp = temp->next;
+		free(head);
+		head=temp;
+	}
+
+	/*Loop and check all other nodes*/
+	while(temp->next != NULL) {
+		if(temp->next->data == data)
+		{
+			if(temp->next->next != NULL) {
+				free(temp->next);
+				temp->next=temp->next->next;
+			}
+			else {
+				free(temp->next);
+				temp->next=NULL;
+			}
+		}
+		temp=temp->next;
+	}
+}
+
 extern void print_out_ll() {	
 
 	temp = head;
@@ -39,5 +68,5 @@ extern void print_out_ll() {
 		fprintf(stdout, "%d->", temp->data);
 		temp=temp->next;
 	}
-	fprintf(stdout, "%d->NULL\n", temp->data);	
+	fprintf(stdout, "%d->NULL\n\n", temp->data);	
 }
