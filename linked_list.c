@@ -3,29 +3,40 @@
 
 #include <linked_list.h>
 
-int add_new_node(int);
-int print_out_ll(struct node *);
+extern void add_new_node(int);
+extern void print_out_ll();
 
-item *head = NULL;
+struct node *head = NULL;
+struct node *temp = NULL;
 
-int add_new_node(int data) {
-	
-	item *curr;
+extern void add_new_node(int data) {
 
 	/* We haven't started the LL...*/
 	if (head == NULL) {
 		head = (struct node *)malloc(sizeof(struct node));
 		head->data=data;
 		head->next=NULL;
-		return 0;
+		temp=head;
 	}
 	else
 	{
-		curr = (struct node *)malloc(sizeof(struct node));
-		curr->data=data;
-		head->next=curr;
-		head=curr;
+		temp->next = (struct node *)malloc(sizeof(struct node));
+		temp=temp->next;
+		temp->data=data;
+		temp->next=NULL;
 	}
 
-	return 0;
+}
+
+extern void print_out_ll() {	
+
+	temp = head;
+
+	while(temp->next != NULL)
+	{
+		fprintf(stdout, "LL Output: %d\n", temp->data);
+		temp=temp->next;
+	}
+	fprintf(stdout, "LL Output: %d\n", temp->data);
+	
 }
