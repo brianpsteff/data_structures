@@ -32,11 +32,12 @@ extern void print_out_ll() {
 
 	temp = head;
 
+	fprintf(stdout, "Current linked list\n\n\t");
+
 	while(temp->next != NULL)
 	{
-		fprintf(stdout, "LL Output: %d\n", temp->data);
+		fprintf(stdout, "%d->", temp->data);
 		temp=temp->next;
 	}
-	fprintf(stdout, "LL Output: %d\n", temp->data);
-	
+	fprintf(stdout, "%d->NULL\n", temp->data);	
 }
