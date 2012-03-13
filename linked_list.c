@@ -51,6 +51,7 @@ extern void remove_node(int data) {
 			else {
 				free(temp->next);
 				temp->next=NULL;
+				continue;
 			}
 		}
 		temp=temp->next;
