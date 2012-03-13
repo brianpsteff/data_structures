@@ -5,6 +5,8 @@
 
 int main(int argc, char **argv) {
 
+	/* Simple linked list test */
+
 	int i;
 	int storeUs[5] = {5,10,15,7,2};
 
@@ -12,6 +14,12 @@ int main(int argc, char **argv) {
 		add_new_node(storeUs[i]);
 	}
 
+	print_out_ll();
+	remove_node(5);
+	print_out_ll();
+	remove_node(7);
+	print_out_ll();
+	remove_node(2);
 	print_out_ll();
 
 	return 0;
