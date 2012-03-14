@@ -3,13 +3,13 @@
 
 #include <bst.h>
 
-struct bst_node *root;
+//struct bst_node *root;
 struct bst_node *temp;
 
-extern void add_new_node_bst(int data) {
-
-	if(root == NULL) {
-		root = (struct bst_node *)malloc(sizeof(struct bst_node));
+extern void add_new_node_bst(struct bst_node *root, int data) {
+	
+	//This is a hack; Need to change to if(root->data is not defined)
+	if(root->data>65555) {
 		root->data = data;
 		root->left = NULL;
 		root->right = NULL;
@@ -52,10 +52,6 @@ void recurse_bst_add(struct bst_node *present, int data) {
       new->right=NULL;
     }
 	}
-}
-
-extern struct bst_node * get_root() {
-	return root;
 }
 
 extern void print_out_bst_breadth(struct bst_node *temp) {
