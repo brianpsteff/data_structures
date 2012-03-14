@@ -8,7 +8,7 @@ linked_list.o: linked_list.c
 	$(CC) $(CFLAGS) -c linked_list.c 
 
 bst.o: bst.c
-	$(CC) -c bst.c
+	$(CC) $(CFLAGS) -c bst.c
 
 clean:
 	rm *.o main
