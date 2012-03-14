@@ -9,7 +9,7 @@ struct bst_node *temp;
 extern void add_new_node_bst(struct bst_node *root, int data) {
 	
 	//This is a hack; Need to change to if(root->data is not defined)
-	if(root->data>65555) {
+	if(root->data == -1) {
 		root->data = data;
 		root->left = NULL;
 		root->right = NULL;
@@ -24,7 +24,7 @@ extern void add_new_node_bst(struct bst_node *root, int data) {
 void recurse_bst_add(struct bst_node *present, int data) {
 
 	struct bst_node *new;	
-
+	
 	if(data < present->data) {
 		if(present->left != NULL) {
 			present=present->left;
@@ -55,9 +55,8 @@ void recurse_bst_add(struct bst_node *present, int data) {
 }
 
 extern void print_out_bst_breadth(struct bst_node *temp) {
-	if(temp == NULL) {
+	if(temp == NULL) 
 		return;
-	}
 	fprintf(stdout,"%d\n",temp->data);
 	print_out_bst_breadth(temp->left);	
 	print_out_bst_breadth(temp->right);	
