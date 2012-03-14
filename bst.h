@@ -4,7 +4,6 @@ struct bst_node {
 	struct bst_node *right;
 };
 
-extern void add_new_node_bst(int);
+extern void add_new_node_bst(struct bst_node *,int);
 extern void print_out_bst_breadth(struct bst_node *);
-extern struct bst_node * get_root();
 void recurse_bst_add(struct bst_node *,int);
