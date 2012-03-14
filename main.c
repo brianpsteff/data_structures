@@ -12,7 +12,7 @@ void testBST();
 
 int main(int argc, char **argv) {
 
-	//testLL();
+	testLL();
 
 	testBST();
 
@@ -24,17 +24,20 @@ void testLL() {
   int i;
   int storeUs[5] = {5,10,15,7,2};
 
+	struct node head;
+	head.data=-1;
+
   for(i=0; i<5; i++) {
-    add_new_node(storeUs[i]);
+    add_new_node(&head,storeUs[i]);
   }
 
-  print_out_ll();
-  remove_node(5);
-  print_out_ll();
-  remove_node(7);
-  print_out_ll();
-  remove_node(2);
-  print_out_ll();
+  print_out_ll(&head);
+  remove_node(&head,5);
+  print_out_ll(&head);
+  remove_node(&head,7);
+  print_out_ll(&head);
+  remove_node(&head,2);
+  print_out_ll(&head);
 }
 
 void testBST() {
@@ -43,8 +46,12 @@ void testBST() {
   int storeUs[5] = {5,10,15,7,2};
  
 	struct bst_node asdf;
+
+	asdf.data=-1;
+
 	for(i=0; i<5; i++) {
     add_new_node_bst(&asdf,storeUs[i]);
   }
+	fprintf(stdout,"Current Binary Tree:\n\n");
 	print_out_bst_breadth(&asdf);
 }
