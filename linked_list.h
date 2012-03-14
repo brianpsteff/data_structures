@@ -3,7 +3,7 @@ struct node {
 	struct node *next;
 };
 
-extern void add_new_node(int);
-extern void remove_node(int);
-extern void print_out_ll();
+extern void add_new_node(struct node *, int);
+extern void remove_node(struct node *, int);
+extern void print_out_ll(struct node *);
 
