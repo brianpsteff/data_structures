@@ -1,8 +1,8 @@
 CC=gcc
-CFLAGS=-I.
+CFLAGS=-I. -Wall
 
 main: linked_list.o bst.o main.c
-	$(CC) -o main linked_list.o bst.o main.c
+	$(CC) $(CFLAGS) -o main linked_list.o bst.o main.c
 
 linked_list.o: linked_list.c
 	$(CC) $(CFLAGS) -c linked_list.c 
