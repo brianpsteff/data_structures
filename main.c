@@ -42,11 +42,9 @@ void testBST() {
 	int i;
   int storeUs[5] = {5,10,15,7,2};
  
-	struct bst_node *asdf;
-	asdf=NULL;
+	struct bst_node asdf;
 	for(i=0; i<5; i++) {
-    add_new_node_bst(storeUs[i]);
+    add_new_node_bst(&asdf,storeUs[i]);
   }
-	asdf=get_root();
-	print_out_bst_breadth(asdf);
+	print_out_bst_breadth(&asdf);
 }
