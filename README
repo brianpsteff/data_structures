@@ -2,3 +2,4 @@ This is a simple library of various data structures. Current data structures
 include:
 	Linked Lists
 	Binary Search Trees
+	Hash Tables
