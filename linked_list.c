@@ -3,10 +3,6 @@
 
 #include <linked_list.h>
 
-extern void add_new_node(int);
-extern void remove_node(int);
-extern void print_out_ll();
-
 struct node *head = NULL;
 struct node *temp = NULL;
 
