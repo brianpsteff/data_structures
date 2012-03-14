@@ -3,14 +3,13 @@
 
 #include <linked_list.h>
 
-struct node *head = NULL;
 struct node *temp = NULL;
 
-extern void add_new_node(int data) {
+extern void add_new_node(struct node *head, int data) {
 
 	/* We haven't started the LL...*/
-	if (head == NULL) {
-		head = (struct node *)malloc(sizeof(struct node));
+	if (head->data == -1) {
+		temp = (struct node *)malloc(sizeof(struct node));
 		head->data=data;
 		head->next=NULL;
 		temp=head;
@@ -25,17 +24,15 @@ extern void add_new_node(int data) {
 
 }
 
-extern void remove_node(int data) {	
+extern void remove_node(struct node *head, int data) {	
 
 	temp = head;
 
 	/*Head node has to be deleted*/
 	if(temp->data == data) {
 		temp = temp->next;
-		free(head);
 		head=temp;
 	}
-
 	/*Loop and check all other nodes*/
 	while(temp->next != NULL) {
 		if(temp->next->data == data)
@@ -54,7 +51,7 @@ extern void remove_node(int data) {
 	}
 }
 
-extern void print_out_ll() {	
+extern void print_out_ll(struct node *head) {	
 
 	temp = head;
 
