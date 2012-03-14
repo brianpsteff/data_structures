@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <bst.h>
+#include <linked_list.h>
+
 /* main.c is a simple test program to excerise various DS's*/
 
 int main(int, char **);
@@ -9,7 +12,7 @@ void testBST();
 
 int main(int argc, char **argv) {
 
-	testLL();
+	//testLL();
 
 	testBST();
 
@@ -38,9 +41,12 @@ void testBST() {
 
 	int i;
   int storeUs[5] = {5,10,15,7,2};
-
-  for(i=0; i<5; i++) {
+ 
+	struct bst_node *asdf;
+	asdf=NULL;
+	for(i=0; i<5; i++) {
     add_new_node_bst(storeUs[i]);
   }
-
+	asdf=get_root();
+	print_out_bst_breadth(asdf);
 }
