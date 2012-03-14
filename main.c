@@ -54,4 +54,7 @@ void testBST() {
   }
 	fprintf(stdout,"Current Binary Tree:\n\n");
 	print_out_bst_breadth(&asdf);
+	remove_node_bst(&asdf,10);
+	fprintf(stdout,"Current Binary Tree:\n\n");
+	print_out_bst_breadth(&asdf);
 }

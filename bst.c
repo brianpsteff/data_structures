@@ -54,6 +54,31 @@ void recurse_bst_add(struct bst_node *present, int data) {
 	}
 }
 
+extern void remove_node_bst(struct bst_node *root, int data) {
+	
+	temp=root;
+	
+	//Delete root node, refactor tree...
+	if(root->left->data==data) {
+		root->left=root->left->left;
+	}
+	if(root->right->data==data) {
+		root->right=root->right->right;
+		
+	}
+	
+	//Go left...
+	if(data<root->data)
+	{
+		remove_node_bst(root->left,data);
+	}	
+	else //Go right...
+	{
+		remove_node_bst(root->right,data);
+	}
+	root=temp;
+}
+
 extern void print_out_bst_breadth(struct bst_node *temp) {
 	if(temp == NULL) 
 		return;
