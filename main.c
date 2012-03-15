@@ -3,18 +3,22 @@
 
 #include <bst.h>
 #include <linked_list.h>
+#include <hash_table.h>
 
 /* main.c is a simple test program to excerise various DS's*/
 
 int main(int, char **);
 void testLL();
 void testBST();
+void testHASH();
 
 int main(int argc, char **argv) {
 
-	testLL();
+	//testLL();
 
-	testBST();
+	//testBST();
+
+	testHASH();
 
 	return 0;
 }
@@ -52,9 +56,27 @@ void testBST() {
 	for(i=0; i<5; i++) {
     add_new_node_bst(&asdf,storeUs[i]);
   }
+	
 	fprintf(stdout,"Current Binary Tree:\n\n");
 	print_out_bst_breadth(&asdf);
 	remove_node_bst(&asdf,10);
 	fprintf(stdout,"Current Binary Tree:\n\n");
 	print_out_bst_breadth(&asdf);
+}
+
+void testHASH() {
+	
+	int check;
+	struct hashtb newht;
+
+	hashtb_init(&newht);
+	hashtb_insert(&newht,5);
+	hashtb_insert(&newht,7);
+
+	check=hashtb_data_exists(&newht,5);
+	fprintf(stdout,"CHECK: %d\n",check);
+	check=hashtb_data_exists(&newht,7);
+	fprintf(stdout,"CHECK: %d\n",check);
+	check=hashtb_data_exists(&newht,8);
+	fprintf(stdout,"CHECK: %d\n",check);
 }
