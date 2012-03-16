@@ -3,3 +3,15 @@ include:
 	Linked Lists
 	Binary Search Trees
 	Hash Tables
+
+Installation:
+Simply type the following:
+make lib
+
+After everything finishes compiling you will have a static library
+you can link against with any C/C++ program. When you are compiling your 
+program just include a -L./libdstructs.a; For example:
+
+gcc -o myprog myprog.c -L./libdstructs.a
+
+Enjoy!
