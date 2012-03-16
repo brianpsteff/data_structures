@@ -56,27 +56,41 @@ void recurse_bst_add(struct bst_node *present, int data) {
 
 extern void remove_node_bst(struct bst_node *root, int data) {
 	
+	//temp=root;
+	int holder;
+	
+	if(root->data==data) {
+	/*Okay we found the node, get the logical successor*/
 	temp=root;
-	
-	//Delete root node, refactor tree...
-	if(root->left->data==data) {
-		root->left=root->left->left;
-	}
-	if(root->right->data==data) {
-		root->right=root->right->right;
 		
+		if(temp->right==NULL) {
+			if(temp->left==NULL) {
+				free(root);
+				root=NULL;
+			}
+			else {
+				holder=temp->left->data;
+				temp->left->data=root->data;
+				root->data=holder;
+				remove_node_bst(root->left,data);
+			}
+		}
+		else {
+			holder=temp->right->data;
+			temp->right->data=root->data;
+			root->data=holder;
+			remove_node_bst(root->right,data);
+		}
+
 	}
-	
-	//Go left...
-	if(data<root->data)
-	{
+	else if(data<root->data)
+	{	
 		remove_node_bst(root->left,data);
 	}	
 	else //Go right...
 	{
 		remove_node_bst(root->right,data);
 	}
-	root=temp;
 }
 
 extern void print_out_bst_breadth(struct bst_node *temp) {
@@ -85,4 +99,9 @@ extern void print_out_bst_breadth(struct bst_node *temp) {
 	fprintf(stdout,"%d\n",temp->data);
 	print_out_bst_breadth(temp->left);	
 	print_out_bst_breadth(temp->right);	
+}
+
+extern int search_bst(struct bst_node *root, int data) {
+
+	return 0;
 }
