@@ -16,9 +16,9 @@ int main(int argc, char **argv) {
 
 	//testLL();
 
-	//testBST();
+	testBST();
 
-	testHASH();
+	//testHASH();
 
 	return 0;
 }
@@ -47,13 +47,13 @@ void testLL() {
 void testBST() {
 
 	int i;
-  int storeUs[5] = {5,10,15,7,2};
+  int storeUs[8] = {5,10,15,7,2,12,1,3};
  
 	struct bst_node asdf;
 
 	asdf.data=-1;
 
-	for(i=0; i<5; i++) {
+	for(i=0; i<8; i++) {
     add_new_node_bst(&asdf,storeUs[i]);
   }
 	
