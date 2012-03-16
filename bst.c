@@ -66,7 +66,6 @@ extern void remove_node_bst(struct bst_node *root, int data) {
 		if(temp->right==NULL) {
 			if(temp->left==NULL) {
 				free(root);
-				root=NULL;
 			}
 			else {
 				holder=temp->left->data;
