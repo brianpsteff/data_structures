@@ -4,6 +4,7 @@
 #include <bst.h>
 #include <linked_list.h>
 #include <hash_table.h>
+#include <red_black_tree.h>
 
 /* main.c is a simple test program to excerise various DS's*/
 
@@ -11,14 +12,17 @@ int main(int, char **);
 void testLL();
 void testBST();
 void testHASH();
+void testRBT();
 
 int main(int argc, char **argv) {
 
 	//testLL();
 
-	testBST();
+	//testBST();
 
 	//testHASH();
+
+	testRBT();
 
 	return 0;
 }
@@ -63,6 +67,21 @@ void testBST() {
 	fprintf(stdout,"Current Binary Tree:\n\n");
 	print_out_bst_breadth(&asdf);
 }
+
+
+void testRBT() {
+
+  int i;
+  int storeUs[8] = {5,10,15,7,2,12,1,3};
+
+  struct red_black_node asdf;
+
+  for(i=0; i<8; i++) {
+    insert_node_rbt(&asdf,storeUs[i]);
+  }
+
+}
+
 
 void testHASH() {
 	
