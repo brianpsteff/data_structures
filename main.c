@@ -20,9 +20,9 @@ int main(int argc, char **argv) {
 
 	//testBST();
 
-	//testHASH();
+	testHASH();
 
-	testRBT();
+	//testRBT();
 
 	return 0;
 }
@@ -85,11 +85,19 @@ void testRBT() {
 
 void testHASH() {
 	
-	int check;
-	struct hashtb newht;
+	struct hashtb *newht;
+	newht=NULL;
 
-	hashtb_init(&newht);
-	hashtb_insert(&newht,5);
+	//hashtb_init(&newht);
+	newht=hashtb_create();	
+
+	hashtb_add_element(newht,15,15);
+	hashtb_add_element(newht,20,29);
+	hashtb_add_element(newht,30,39);
+
+	hashtb_lookup(newht,15);
+
+	/*hashtb_insert(&newht,5);
 	hashtb_insert(&newht,7);
 
 	check=hashtb_data_exists(&newht,5);
@@ -97,5 +105,5 @@ void testHASH() {
 	check=hashtb_data_exists(&newht,7);
 	fprintf(stdout,"CHECK: %d\n",check);
 	check=hashtb_data_exists(&newht,8);
-	fprintf(stdout,"CHECK: %d\n",check);
+	fprintf(stdout,"CHECK: %d\n",check);*/
 }
