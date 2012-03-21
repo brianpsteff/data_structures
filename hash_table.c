@@ -4,34 +4,77 @@
 
 #include <hash_table.h>
 
-extern void hashtb_init(struct hashtb *ht) {
-	int i;
-	ht->buckets=(int **)malloc(10*sizeof(int));
-	for (i = 0; i < 10; i++) {
-		ht->buckets[i] = (int *)malloc(2*sizeof(int));
+extern struct hashtb * hashtb_create() {
+	struct hashtb *newht;
+	newht=(struct hashtb *)calloc(1,sizeof(struct hashtb));
+	newht->key_num=128;
+	newht->key_ratio=4;
+	newht->vals=(struct hashtb_element **) calloc(newht->key_num,sizeof(struct hashtb_element *));
+	return newht;
+}
+
+extern int hashtb_add_element(struct hashtb *table, int key, int data) {
+
+	if((table->key_count / table->key_num) >= table->key_ratio) {
+		printf("Must resize table...\n");
+		
 	}
-	//memset(ht->buckets,-1,sizeof(ht->buckets[0][0]*2*10));
-	/*for (i = 0; i < 10; i++) {
-		ht->buckets[0][i] = i;
-	}*/
-}
 
-extern void hashtb_insert(struct hashtb *ht, int data) {
+	size_t hash_val = get_hash(key,256);
 
-	int hash;
-	hash = data % 15;
+	struct hashtb_element *new;
+	new = (struct hashtb_element *) calloc(1,sizeof(struct hashtb_element));
 
-	ht->buckets[1][hash] = data;
-}
+	new->key=key;
+	new->data=data;
 
-extern int hashtb_data_exists(struct hashtb *ht, int data) {
+	if(!table->vals[hash_val]) {
+		printf("No problems adding element....\n");
+		table->vals[hash_val] = new;
+		table->key_count++;
+	}
+	else {
+		printf("Collision...\n");
+		struct hashtb_element *temp = table->vals[hash_val];
+		while(temp->next != NULL)
+		{
+			temp = temp->next;
+		}
+		temp->next = new;
+		table->key_count++;
+	}
 
-	int hash;
-	hash = data % 15;
-if(ht->buckets[1][hash] == data)
-	return 1;
-
-	fprintf(stdout,"NOT FOUND\n");
 	return 0;
 }
 
+extern int get_hash(int key, int key_max) {
+	int i = 0;
+	int hash = 0;
+	while(i<(key_max/8)) {
+		hash ^= i^key_max;
+		i++;
+	}
+	hash = hash % key_max;
+	return hash;
+}
+
+extern void hashtb_lookup(struct hashtb *table, int key) {
+	size_t hash = get_hash(key,256);
+
+	if(!table->vals[hash]) {
+		printf("No entries...\n");
+		return;
+	}
+
+	struct hashtb_element *temp = table->vals[hash];
+
+	while(temp->next != NULL) {
+		if(temp->key == key) {
+			printf("Found val: %d\n",temp->data);
+			return;
+		}
+		temp=temp->next;
+	}
+	printf("No keys found...\n");
+	return;
+}
