@@ -74,10 +74,12 @@ void testRBT() {
   int i;
   int storeUs[8] = {5,10,15,7,2,12,1,3};
 
-  struct red_black_node asdf;
+  struct red_black_node *head;
+
+	head=create_rbt();
 
   for(i=0; i<8; i++) {
-    insert_node_rbt(&asdf,storeUs[i]);
+    insert_node_rbt(head,storeUs[i]);
   }
 
 }
