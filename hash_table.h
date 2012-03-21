@@ -1,7 +1,17 @@
 struct hashtb {
-	int **buckets;
+	struct hashtb_element **vals;
+	int key_count;
+	int key_num;
+	int key_ratio;
 };
 
-extern void hashtb_insert(struct hashtb *, int);
-extern void hashtb_init(struct hashtb *);
-extern int hashtb_data_exists(struct hashtb *, int);
+struct hashtb_element {
+	int key;
+	int data;
+	struct hashtb_element *next;
+};
+
+extern struct hashtb * hashtb_create();
+extern int hashtb_add_element(struct hashtb *,int,int);
+extern int get_hash(int, int);
+extern void hashtb_lookup(struct hashtb *,int);
