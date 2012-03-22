@@ -29,12 +29,12 @@ extern int hashtb_add_element(struct hashtb *table, int key, int data) {
 	new->data=data;
 
 	if(!table->vals[hash_val]) {
-		printf("No problems adding element....\n");
+		printf("No problems adding element %d....\n",data);
 		table->vals[hash_val] = new;
 		table->key_count++;
 	}
 	else {
-		printf("Collision...\n");
+		printf("Collision with element %d...\n",data);
 		struct hashtb_element *temp = table->vals[hash_val];
 		while(temp->next != NULL)
 		{
@@ -48,14 +48,9 @@ extern int hashtb_add_element(struct hashtb *table, int key, int data) {
 }
 
 extern int get_hash(int key, int key_max) {
-	int i = 0;
-	int hash = 0;
-	while(i<(key_max/8)) {
-		hash ^= i^key_max;
-		i++;
-	}
-	hash = hash % key_max;
-	return hash;
+	key ^= (key >> 20) ^ (key >>12);
+	//printf("HASH IS: %d\n",key^(key>>7)^(key>>4));
+	return key^(key>>7)^(key>>4);
 }
 
 extern void hashtb_lookup(struct hashtb *table, int key) {
@@ -68,6 +63,14 @@ extern void hashtb_lookup(struct hashtb *table, int key) {
 
 	struct hashtb_element *temp = table->vals[hash];
 
+	/*If data is in the first element of the chain*/
+	if(temp->next == NULL) {
+		if(temp->key == key) {
+    	printf("Found val: %d\n",temp->data);
+    	return;
+		}
+	}
+	/*Cycle through the chained elements looking for the data*/
 	while(temp->next != NULL) {
 		if(temp->key == key) {
 			printf("Found val: %d\n",temp->data);
