@@ -90,13 +90,18 @@ void testHASH() {
 	struct hashtb *newht;
 	newht=NULL;
 
-	//hashtb_init(&newht);
 	newht=hashtb_create();	
 
 	hashtb_add_element(newht,15,15);
 	hashtb_add_element(newht,20,29);
 	hashtb_add_element(newht,30,39);
+	hashtb_add_element(newht,1,7);
+	hashtb_add_element(newht,3,2);
+	hashtb_add_element(newht,2,2031);
+	hashtb_add_element(newht,15,21);
 
+	hashtb_lookup(newht,15);
+	hashtb_lookup(newht,3);
 	hashtb_lookup(newht,15);
 
 	/*hashtb_insert(&newht,5);
