@@ -6,6 +6,8 @@
 #include <hash_table.h>
 #include <red_black_tree.h>
 
+#define TEST_DATA_SIZE 1000;
+
 /* main.c is a simple test program to excerise various DS's*/
 
 int main(int, char **);
@@ -87,30 +89,35 @@ void testRBT() {
 
 void testHASH() {
 	
+	int rand, key;
+	FILE *fp, *fr;
+	char rand_line[10];
+	char key_line[10];
 	struct hashtb *newht;
 	newht=NULL;
 
 	newht=hashtb_create();	
 
-	hashtb_add_element(newht,15,15);
-	hashtb_add_element(newht,20,29);
-	hashtb_add_element(newht,30,39);
-	hashtb_add_element(newht,1,7);
-	hashtb_add_element(newht,3,2);
-	hashtb_add_element(newht,2,2031);
-	hashtb_add_element(newht,15,21);
+	/*hashtb_add_element(newht,15123,15);
+	hashtb_add_element(newht,15123,15);
+	hashtb_add_element(newht,15123,16);
 
-	hashtb_lookup(newht,15);
-	hashtb_lookup(newht,3);
-	hashtb_lookup(newht,15);
+	hashtb_lookup(newht,15123);
+	hashtb_lookup(newht,2123);
+	hashtb_lookup(newht,15123);*/
 
-	/*hashtb_insert(&newht,5);
-	hashtb_insert(&newht,7);
-
-	check=hashtb_data_exists(&newht,5);
-	fprintf(stdout,"CHECK: %d\n",check);
-	check=hashtb_data_exists(&newht,7);
-	fprintf(stdout,"CHECK: %d\n",check);
-	check=hashtb_data_exists(&newht,8);
-	fprintf(stdout,"CHECK: %d\n",check);*/
+	fp=fopen("rand_data.txt","r");
+	fr=fopen("rand_keys.txt","r");
+	while(fgets(rand_line,10,fp) != NULL && fgets(key_line,10,fr) != NULL ) {
+		sscanf(rand_line, "%d", &rand);
+		sscanf(key_line, "%d", &key);
+		hashtb_add_element(newht,key,rand);
+	}
+	fclose(fp);
+	rewind(fr);
+	while(fgets(key_line,10,fr) != NULL) {
+		sscanf(key_line, "%d", &key);
+		hashtb_lookup(newht,key);
+	}
+	fclose(fr);
 }
