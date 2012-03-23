@@ -9,7 +9,8 @@ extern struct hashtb * hashtb_create() {
 	newht=(struct hashtb *)calloc(1,sizeof(struct hashtb));
 	newht->key_num=128;
 	newht->key_ratio=4;
-	newht->vals=(struct hashtb_element **) calloc(newht->key_num,sizeof(struct hashtb_element *));
+	newht->vals=(struct hashtb_element **) calloc(newht->key_num, \
+								sizeof(struct hashtb_element *));
 	return newht;
 }
 
@@ -46,10 +47,9 @@ extern int hashtb_add_element(struct hashtb *table, int key, int data) {
 
 	return 0;
 }
-
+/*Generate hash value from key with some simple shifts */
 extern int get_hash(int key, int key_max) {
 	key ^= (key >> 20) ^ (key >>12);
-	//printf("HASH IS: %d\n",key^(key>>7)^(key>>4));
 	return key^(key>>7)^(key>>4);
 }
 
@@ -57,7 +57,7 @@ extern void hashtb_lookup(struct hashtb *table, int key) {
 	size_t hash = get_hash(key,256);
 
 	if(!table->vals[hash]) {
-		printf("No entries...\n");
+		printf("No Entries found for key %d...\n",key);
 		return;
 	}
 
@@ -70,14 +70,14 @@ extern void hashtb_lookup(struct hashtb *table, int key) {
     	return;
 		}
 	}
-	/*Cycle through the chained elements looking for the data*/
+	/*Cycle through the chained elements looking for data*/
+	printf("For key: %d -- Found vals: ",key);
 	while(temp->next != NULL) {
 		if(temp->key == key) {
-			printf("Found val: %d\n",temp->data);
-			return;
+			printf("%d and ",temp->data);
 		}
 		temp=temp->next;
 	}
-	printf("No keys found...\n");
+	printf("%d\n",temp->data);
 	return;
 }
