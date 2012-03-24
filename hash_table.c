@@ -4,6 +4,10 @@
 
 #include <hash_table.h>
 
+/*
+ * Create the primary hash_table structure which will hold all
+ * of the hash_table elements.
+ */
 extern struct hashtb * hashtb_create() {
 	struct hashtb *newht;
 	newht=(struct hashtb *)calloc(1,sizeof(struct hashtb));
@@ -14,11 +18,14 @@ extern struct hashtb * hashtb_create() {
 	return newht;
 }
 
+/*
+ * Add hash table elements to the primary hash table
+ */
 extern int hashtb_add_element(struct hashtb *table, int key, int data) {
 
 	if((table->key_count / table->key_num) >= table->key_ratio) {
 		printf("Must resize table...\n");
-		
+		hashtb_resize(table);
 	}
 
 	size_t hash_val = get_hash(key,table->key_num);
@@ -40,7 +47,6 @@ extern int hashtb_add_element(struct hashtb *table, int key, int data) {
 		{
 			temp = temp->next;
 		}
-		//temp->next = new;
 		new=temp->next;
 		table->key_count++;
 		printf("Collision avoided\n");
@@ -49,13 +55,17 @@ extern int hashtb_add_element(struct hashtb *table, int key, int data) {
 	return 0;
 }
 /*Generate hash value from key with some simple shifts */
-extern int get_hash(int key, int key_max) {
+int get_hash(int key, int key_max) {
 	key ^= (key >> 20) ^ (key >>12);
 	key ^= (key>>7)^(key>>4);
 	key = key % key_max;
 	return key;
 }
 
+/*
+ * Preform a table lookup based on a key. In the event multiple
+ * values belong to the same key print out all those values 
+ */
 extern void hashtb_lookup(struct hashtb *table, int key) {
 	size_t hash = get_hash(key,table->key_num);
 
@@ -83,4 +93,9 @@ extern void hashtb_lookup(struct hashtb *table, int key) {
 	}
 	printf("%d\n",temp->data);
 	return;
+}
+
+void hashtb_resize(struct hashtb *table) {
+	//struct hashtb_element **temp = table->vals;
+	//temp->vals = calloc
 }
