@@ -116,3 +116,25 @@ extern int find_elements_ll(struct node *head, int data) {
 
 	return total;
 }
+
+/*Find there is an occurence of an element with in the LL, return 1 if true;
+ * return 0 if no occurence; Better best-case complexity compared to
+ * find_element_ll()
+ */
+extern int does_element_exist_ll(struct node *head, int data) {
+	struct node *temp = NULL;
+	
+	temp=head;
+
+	while(temp->next != NULL) {
+		if(temp->data==data)
+			return 1;
+		temp=temp->next;
+	}
+
+	/*Check last element*/
+	if(temp->data==data)
+		return 1;
+	
+	return 0;
+}

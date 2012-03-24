@@ -55,6 +55,10 @@ void testLL() {
   print_out_ll(head);
 	printf("Total Elements %d\n",total_elements_ll(head));
 	printf("The number 2 occurs: %d time(s)\n",find_elements_ll(head,2));
+	printf("Does the element 10 exist in the list: %s\n", \
+					does_element_exist_ll(head,10) ? "Yes!" : "No");
+	printf("Does the element 100 exist in the list: %s\n", \
+					does_element_exist_ll(head,100) ? "Yes!" : "No");
 }
 
 void testBST() {
