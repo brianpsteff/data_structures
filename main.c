@@ -119,7 +119,7 @@ void testHASH() {
 	}
 	fclose(fr);
 	gettimeofday(&end,NULL);
-  
+  free(newht);
 	printf("Total time: %ld microseconds\n", ((end.tv_sec * 1000000 + end.tv_usec)
 		  - (start.tv_sec * 1000000 + start.tv_usec)));
 	printf("Test complete!\n");
