@@ -20,11 +20,11 @@ void testRBT();
 
 int main(int argc, char **argv) {
 
-	//testLL();
+	testLL();
 
 	//testBST();
 
-	testHASH();
+	//testHASH();
 
 	//testRBT();
 
@@ -36,20 +36,24 @@ void testLL() {
   int i;
   int storeUs[5] = {5,10,15,7,2};
 
-	struct node head;
-	head.data=-1;
+	struct node *head;
+	head=NULL;
+
+	head=create_new_ll();
 
   for(i=0; i<5; i++) {
-    add_new_node(&head,storeUs[i]);
+    add_new_node(head,storeUs[i]);
   }
 
-  print_out_ll(&head);
-  remove_node(&head,5);
-  print_out_ll(&head);
-  remove_node(&head,7);
-  print_out_ll(&head);
-  remove_node(&head,2);
-  print_out_ll(&head);
+  print_out_ll(head);
+  remove_node(head,5);
+  print_out_ll(head);
+  remove_node(head,7);
+  print_out_ll(head);
+	printf("Total Elements %d\n",total_ll_elements(head));
+  remove_node(head,2);
+  print_out_ll(head);
+	printf("Total Elements %d\n",total_ll_elements(head));
 }
 
 void testBST() {
