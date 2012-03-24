@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+#include <sys/time.h>
 
 #include <bst.h>
 #include <linked_list.h>
@@ -93,21 +95,17 @@ void testHASH() {
 	FILE *fp, *fr;
 	char rand_line[10];
 	char key_line[10];
+	struct timeval start, end;
 	struct hashtb *newht;
 	newht=NULL;
 
 	newht=hashtb_create();	
 
-	/*hashtb_add_element(newht,15123,15);
-	hashtb_add_element(newht,15123,15);
-	hashtb_add_element(newht,15123,16);
-
-	hashtb_lookup(newht,15123);
-	hashtb_lookup(newht,2123);
-	hashtb_lookup(newht,15123);*/
-
 	fp=fopen("rand_data.txt","r");
 	fr=fopen("rand_keys.txt","r");
+	
+	gettimeofday(&start,NULL);
+	
 	while(fgets(rand_line,10,fp) != NULL && fgets(key_line,10,fr) != NULL ) {
 		sscanf(rand_line, "%d", &rand);
 		sscanf(key_line, "%d", &key);
@@ -120,4 +118,9 @@ void testHASH() {
 		hashtb_lookup(newht,key);
 	}
 	fclose(fr);
+	gettimeofday(&end,NULL);
+  
+	printf("Total time: %ld microseconds\n", ((end.tv_sec * 1000000 + end.tv_usec)
+		  - (start.tv_sec * 1000000 + start.tv_usec)));
+	printf("Test complete!\n");
 }
