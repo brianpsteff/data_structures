@@ -3,9 +3,9 @@ struct bst_node {
 	struct bst_node *left;
 	struct bst_node *right;
 };
-
-extern void add_new_node_bst(struct bst_node *,int);
-extern void print_out_bst_breadth(struct bst_node *);
-extern void remove_node_bst(struct bst_node *, int);
-void recurse_bst_add(struct bst_node *,int);
-extern int search_bst(struct bst_node *,int);
+/*External functions*/
+void add_new_node_bst(struct bst_node *,int);
+void print_out_bst_breadth(struct bst_node *);
+void remove_node_bst(struct bst_node *, int);
+int search_bst(struct bst_node *,int);
+struct bst_node * create_new_bst();
