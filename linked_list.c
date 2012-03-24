@@ -97,3 +97,22 @@ extern int total_ll_elements(struct node *head) {
 
 	return total;
 }
+
+/*Find and return the total occurences of an element*/
+extern int find_elements_ll(struct node *head, int data) {
+	int total = 0;
+
+	struct node *temp = NULL;
+	temp = head;
+
+	while(temp->next != NULL) {
+		if(temp->data==data)
+			total++;
+		temp=temp->next;
+	}
+	/*Check the last element*/
+	if(temp->data==data) 
+      total++;
+
+	return total;
+}
