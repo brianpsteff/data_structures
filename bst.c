@@ -9,11 +9,12 @@ extern struct bst_node * create_new_bst() {
 	return root;
 }
 
+/* Recursive function to add elements to bst */
 extern void add_new_node_bst(struct bst_node *root, int data) {
 	
 	struct bst_node *new = NULL;
 
-	if(root->data == -1) {
+	if(root->data == 0) {
 		root->data = data;
 		root->left = NULL;
 		root->right = NULL;
@@ -49,6 +50,7 @@ extern void add_new_node_bst(struct bst_node *root, int data) {
  }
 }
 
+/* Recursive function to remove a node from a bst */
 extern void remove_node_bst(struct bst_node *root, int data) {
 	
 	int holder;
@@ -84,6 +86,7 @@ extern void remove_node_bst(struct bst_node *root, int data) {
 	}
 }
 
+/* Recursive function to print out a bst */
 extern void print_out_bst_breadth(struct bst_node *root) {
 	if(root == NULL) 
 		return;
@@ -92,6 +95,7 @@ extern void print_out_bst_breadth(struct bst_node *root) {
 	print_out_bst_breadth(root->right);	
 }
 
+/* Function to search a bst */
 extern int search_bst(struct bst_node *root, int data) {
 
 	return 2;
