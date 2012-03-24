@@ -11,7 +11,11 @@ struct hashtb_element {
 	struct hashtb_element *next;
 };
 
-extern struct hashtb * hashtb_create();
-extern int hashtb_add_element(struct hashtb *,int,int);
-extern int get_hash(int, int);
-extern void hashtb_lookup(struct hashtb *,int);
+/*External Functions*/
+struct hashtb * hashtb_create();
+int hashtb_add_element(struct hashtb *,int,int);
+void hashtb_lookup(struct hashtb *,int);
+
+/*Static Functions*/
+int get_hash(int, int);
+void hashtb_resize(struct hashtb *);
