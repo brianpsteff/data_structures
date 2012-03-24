@@ -68,7 +68,6 @@ void testBST() {
 	struct bst_node *root = NULL;
 
 	root=create_new_bst();
-	root->data=-1;
 
 	for(i=0; i<8; i++) {
     add_new_node_bst(root,storeUs[i]);
