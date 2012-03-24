@@ -7,7 +7,7 @@
 extern struct hashtb * hashtb_create() {
 	struct hashtb *newht;
 	newht=(struct hashtb *)calloc(1,sizeof(struct hashtb));
-	newht->key_num=128;
+	newht->key_num=10024;
 	newht->key_ratio=4;
 	newht->vals=(struct hashtb_element **) calloc(newht->key_num, \
 								sizeof(struct hashtb_element *));
@@ -21,28 +21,29 @@ extern int hashtb_add_element(struct hashtb *table, int key, int data) {
 		
 	}
 
-	size_t hash_val = get_hash(key,256);
+	size_t hash_val = get_hash(key,table->key_num);
 
 	struct hashtb_element *new;
 	new = (struct hashtb_element *) calloc(1,sizeof(struct hashtb_element));
 
 	new->key=key;
 	new->data=data;
-
-	if(!table->vals[hash_val]) {
+	
+	if(table->vals[hash_val]==NULL) {
 		printf("No problems adding element %d....\n",data);
 		table->vals[hash_val] = new;
 		table->key_count++;
 	}
 	else {
-		printf("Collision with element %d...\n",data);
 		struct hashtb_element *temp = table->vals[hash_val];
 		while(temp->next != NULL)
 		{
 			temp = temp->next;
 		}
-		temp->next = new;
+		//temp->next = new;
+		new=temp->next;
 		table->key_count++;
+		printf("Collision avoided\n");
 	}
 
 	return 0;
@@ -50,11 +51,13 @@ extern int hashtb_add_element(struct hashtb *table, int key, int data) {
 /*Generate hash value from key with some simple shifts */
 extern int get_hash(int key, int key_max) {
 	key ^= (key >> 20) ^ (key >>12);
-	return key^(key>>7)^(key>>4);
+	key ^= (key>>7)^(key>>4);
+	key = key % key_max;
+	return key;
 }
 
 extern void hashtb_lookup(struct hashtb *table, int key) {
-	size_t hash = get_hash(key,256);
+	size_t hash = get_hash(key,table->key_num);
 
 	if(!table->vals[hash]) {
 		printf("No Entries found for key %d...\n",key);
@@ -71,10 +74,10 @@ extern void hashtb_lookup(struct hashtb *table, int key) {
 		}
 	}
 	/*Cycle through the chained elements looking for data*/
-	printf("For key: %d -- Found vals: ",key);
+	printf("Found vals: ");
 	while(temp->next != NULL) {
 		if(temp->key == key) {
-			printf("%d and ",temp->data);
+			printf("%d ",temp->data);
 		}
 		temp=temp->next;
 	}
