@@ -3,19 +3,30 @@
 
 #include <linked_list.h>
 
-struct node *temp = NULL;
+/* Simple function to initalize a new LL */
+extern struct node * create_new_ll() {
+	struct node *head;
+	head=(struct node *)malloc(sizeof(struct node));
+	return head;
+}
 
+/* Responsible for adding new elements to the LL */
 extern void add_new_node(struct node *head, int data) {
 
+	struct node *temp = NULL;
+
 	/* We haven't started the LL...*/
-	if (head->data == -1) {
+	if (head->next == NULL) {
 		temp = (struct node *)malloc(sizeof(struct node));
 		head->data=data;
-		head->next=NULL;
-		temp=head;
+		head->next=temp;
 	}
 	else
 	{
+		temp = head;
+		while(temp->next != NULL) {
+			temp=temp->next;
+		}
 		temp->next = (struct node *)malloc(sizeof(struct node));
 		temp=temp->next;
 		temp->data=data;
@@ -24,7 +35,10 @@ extern void add_new_node(struct node *head, int data) {
 
 }
 
+/* Remove a single entry from the LL */
 extern void remove_node(struct node *head, int data) {	
+
+	struct node *temp = NULL;
 
 	temp = head;
 
@@ -51,7 +65,10 @@ extern void remove_node(struct node *head, int data) {
 	}
 }
 
+/*Print out the current structure of the LL */
 extern void print_out_ll(struct node *head) {	
+
+	struct node *temp = NULL;
 
 	temp = head;
 
@@ -63,4 +80,20 @@ extern void print_out_ll(struct node *head) {
 		temp=temp->next;
 	}
 	fprintf(stdout, "%d->NULL\n\n", temp->data);	
+}
+
+/*Return the total elements in the LL*/
+extern int total_ll_elements(struct node *head) {
+
+	int total = 0;
+	struct node *temp = NULL;
+	temp = head;
+
+	while(temp->next != NULL) {
+		total++;
+		temp=temp->next;
+	}
+	total++;
+
+	return total;
 }
