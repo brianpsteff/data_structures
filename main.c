@@ -34,17 +34,17 @@ int main(int argc, char **argv) {
 void testLL() {
 
   int i;
-  int storeUs[5] = {5,10,15,7,2};
+  int storeUs[6] = {5,10,15,7,2,2};
 
 	struct node *head;
 	head=NULL;
 
 	head=create_new_ll();
 
-  for(i=0; i<5; i++) {
+  for(i=0; i<6; i++) {
     add_new_node(head,storeUs[i]);
   }
-
+	printf("The number 2 occurs: %d time(s)\n",find_elements_ll(head,2));
   print_out_ll(head);
   remove_node(head,5);
   print_out_ll(head);
@@ -54,6 +54,7 @@ void testLL() {
   remove_node(head,2);
   print_out_ll(head);
 	printf("Total Elements %d\n",total_ll_elements(head));
+	printf("The number 2 occurs: %d time(s)\n",find_elements_ll(head,2));
 }
 
 void testBST() {
