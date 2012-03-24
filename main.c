@@ -20,9 +20,9 @@ void testRBT();
 
 int main(int argc, char **argv) {
 
-	testLL();
+	//testLL();
 
-	//testBST();
+	testBST();
 
 	//testHASH();
 
@@ -36,8 +36,7 @@ void testLL() {
   int i;
   int storeUs[6] = {5,10,15,7,2,2};
 
-	struct node *head;
-	head=NULL;
+	struct node *head = NULL;
 
 	head=create_new_ll();
 
@@ -66,19 +65,20 @@ void testBST() {
 	int i;
   int storeUs[8] = {5,10,15,7,2,12,1,3};
  
-	struct bst_node asdf;
+	struct bst_node *root = NULL;
 
-	asdf.data=-1;
+	root=create_new_bst();
+	root->data=-1;
 
 	for(i=0; i<8; i++) {
-    add_new_node_bst(&asdf,storeUs[i]);
+    add_new_node_bst(root,storeUs[i]);
   }
 	
 	fprintf(stdout,"Current Binary Tree:\n\n");
-	print_out_bst_breadth(&asdf);
-	remove_node_bst(&asdf,10);
+	print_out_bst_breadth(root);
+	remove_node_bst(root,10);
 	fprintf(stdout,"Current Binary Tree:\n\n");
-	print_out_bst_breadth(&asdf);
+	print_out_bst_breadth(root);
 }
 
 
