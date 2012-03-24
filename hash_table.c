@@ -7,7 +7,7 @@
 extern struct hashtb * hashtb_create() {
 	struct hashtb *newht;
 	newht=(struct hashtb *)calloc(1,sizeof(struct hashtb));
-	newht->key_num=10024;
+	newht->key_num=100240;
 	newht->key_ratio=4;
 	newht->vals=(struct hashtb_element **) calloc(newht->key_num, \
 								sizeof(struct hashtb_element *));
