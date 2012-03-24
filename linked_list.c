@@ -11,7 +11,7 @@ extern struct node * create_new_ll() {
 }
 
 /* Responsible for adding new elements to the LL */
-extern void add_new_node(struct node *head, int data) {
+extern void add_new_node_ll(struct node *head, int data) {
 
 	struct node *temp = NULL;
 
@@ -36,7 +36,7 @@ extern void add_new_node(struct node *head, int data) {
 }
 
 /* Remove a single entry from the LL */
-extern void remove_node(struct node *head, int data) {	
+extern void remove_node_ll(struct node *head, int data) {	
 
 	struct node *temp = NULL;
 
@@ -83,7 +83,7 @@ extern void print_out_ll(struct node *head) {
 }
 
 /*Return the total elements in the LL*/
-extern int total_ll_elements(struct node *head) {
+extern int total_elements_ll(struct node *head) {
 
 	int total = 0;
 	struct node *temp = NULL;

@@ -4,9 +4,9 @@ struct node {
 };
 
 /*External functions*/
-void add_new_node(struct node *, int);
-void remove_node(struct node *, int);
+void add_new_node_ll(struct node *, int);
+void remove_node_ll(struct node *, int);
 void print_out_ll(struct node *);
-struct node * create_new_ll();
-int total_ll_elements(struct node *);
+int total_elements_ll(struct node *);
 int find_elements_ll(struct node *,int);
+struct node * create_new_ll();

@@ -42,18 +42,18 @@ void testLL() {
 	head=create_new_ll();
 
   for(i=0; i<6; i++) {
-    add_new_node(head,storeUs[i]);
+    add_new_node_ll(head,storeUs[i]);
   }
 	printf("The number 2 occurs: %d time(s)\n",find_elements_ll(head,2));
   print_out_ll(head);
-  remove_node(head,5);
+  remove_node_ll(head,5);
   print_out_ll(head);
-  remove_node(head,7);
+  remove_node_ll(head,7);
   print_out_ll(head);
-	printf("Total Elements %d\n",total_ll_elements(head));
-  remove_node(head,2);
+	printf("Total Elements %d\n",total_elements_ll(head));
+  remove_node_ll(head,2);
   print_out_ll(head);
-	printf("Total Elements %d\n",total_ll_elements(head));
+	printf("Total Elements %d\n",total_elements_ll(head));
 	printf("The number 2 occurs: %d time(s)\n",find_elements_ll(head,2));
 }
 
