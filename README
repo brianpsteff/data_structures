@@ -1,8 +1,8 @@
-This is a simple library of various general data structures and sorting algorithms. Current data structures
-include:
+This is a simple library of various general data structures and sorting algorithms. Current data structures include:
 	Linked Lists
 	Binary Search Trees
 	Hash Tables
+	Bloom Filters
 
 Installation:
 Simply type the following:
@@ -13,6 +13,8 @@ you can link against with any C/C++ program. When you are compiling your
 program just include a -L./libdstructs.a; For example:
 
 gcc -o myprog myprog.c -L./libdstructs.a
+
+Make sure to include the header(.h) file definition inside your program!
 
 Enjoy!
 
