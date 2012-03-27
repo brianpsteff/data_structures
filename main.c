@@ -8,6 +8,7 @@
 #include <hash_table.h>
 #include <red_black_tree.h>
 #include <bloom_filter.h>
+#include <queue.h>
 
 #define TEST_DATA_SIZE 1000;
 
@@ -19,6 +20,7 @@ void testBST();
 void testHASH();
 void testRBT();
 void testBF();
+void testQ();
 
 int main(int argc, char **argv) {
 
@@ -30,7 +32,9 @@ int main(int argc, char **argv) {
 
 	//testRBT();
 
-	testBF();
+	//testBF();
+	
+	testQ();
 
 	return 0;
 }
@@ -163,5 +167,26 @@ void testBF() {
 	}
 	fclose(fp);
 
-	search_bloom_filter(bloom,"Afrocentrismmm@@@ZZZzz");*/
+	search_bloom_filter(bloom,"Centrismmm@@@ZZZzz");*/
+}
+
+/* LIFO Based queue test */
+void testQ() {
+	struct queue *my_queue;
+	my_queue=NULL;
+
+	my_queue=alloc_queue(my_queue);
+
+	push_queue(my_queue,5);
+	push_queue(my_queue,10);
+	push_queue(my_queue,15);
+	push_queue(my_queue,20);
+	
+	printf("Popped from queue: %d\n",pop_queue(my_queue));
+	printf("Popped from queue: %d\n",pop_queue(my_queue));
+
+	push_queue(my_queue,35);
+	
+	printf("Popped from queue: %d\n",pop_queue(my_queue));
+	printf("Popped from queue: %d\n",pop_queue(my_queue));
 }
