@@ -141,6 +141,9 @@ void testHASH() {
 }
 
 void testBF() {
+	/*FILE *fp;
+	char dictionary_line[30];*/
+
 	struct bloom_filter *bloom;
 	bloom=NULL;
 
@@ -153,4 +156,12 @@ void testBF() {
 	search_bloom_filter(bloom,"alice");
 	search_bloom_filter(bloom,"tim");
 	search_bloom_filter(bloom,"Tim");
+
+	/*fp = fopen("/usr/share/dict/american-english","r");
+	while(fgets(dictionary_line,30,fp) != NULL) {
+		add_to_bloom_filter(bloom,dictionary_line);
+	}
+	fclose(fp);
+
+	search_bloom_filter(bloom,"Afrocentrismmm@@@ZZZzz");*/
 }
