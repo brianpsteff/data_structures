@@ -138,3 +138,11 @@ extern int does_element_exist_ll(struct node *head, int data) {
 	
 	return 0;
 }
+
+/* Is a list empty? Return 1 if true; 0 else */
+int is_list_empty(struct node *head) {
+	if(head->next == NULL) {
+		return 1;
+	}	
+	return 0;
+}

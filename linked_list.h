@@ -11,3 +11,4 @@ int total_elements_ll(struct node *);
 int find_elements_ll(struct node *,int);
 int does_element_exist_ll(struct node *,int);
 struct node * create_new_ll();
+int is_list_empty(struct node *);
