@@ -54,11 +54,12 @@ void search_bloom_filter(struct bloom_filter *bloom, char *name) {
 void hash_bloom_filter(int *set_slots, int numeric) {
 	int i = 0;
 	int key = 0;
-	numeric+=10000;
+	//numeric+=10000;
 	key=numeric;
 	while(i<HASH_FUNCS) {
-		key ^= (key >> 20) ^ (key >>12) ^ (i*i+133);
-	  key ^= (key>>7)^(key>>4) ^ (i*i+155);
+		key ^= (key >> 20) ^ (key >>12) ^ (key >> i*i*i);
+	  key ^= (key>>7)^(key>>4) ^ (i*i*i+155);
+		key = key % BLOOM_SIZE;
 		//printf("KEY IS: %d\n",key);
 		set_slots[i]=key;
 		key = numeric;
