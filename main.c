@@ -20,9 +20,9 @@ void testRBT();
 
 int main(int argc, char **argv) {
 
-	//testLL();
+	testLL();
 
-	testBST();
+	//testBST();
 
 	//testHASH();
 
@@ -39,6 +39,8 @@ void testLL() {
 	struct node *head = NULL;
 
 	head=create_new_ll();
+
+	printf("Is the list empty? %s\n",is_list_empty(head) ? "Yes" : "No");
 
   for(i=0; i<6; i++) {
     add_new_node_ll(head,storeUs[i]);
@@ -58,6 +60,7 @@ void testLL() {
 					does_element_exist_ll(head,10) ? "Yes!" : "No");
 	printf("Does the element 100 exist in the list: %s\n", \
 					does_element_exist_ll(head,100) ? "Yes!" : "No");
+	printf("Is the list empty? %s\n",is_list_empty(head) ? "Yes" : "No");
 }
 
 void testBST() {
