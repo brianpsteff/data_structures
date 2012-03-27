@@ -3,6 +3,7 @@ This is a simple library of various general data structures and sorting algorith
 	Binary Search Trees
 	Hash Tables
 	Bloom Filters
+	Queues
 
 Installation:
 Simply type the following:
