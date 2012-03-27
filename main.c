@@ -7,6 +7,7 @@
 #include <linked_list.h>
 #include <hash_table.h>
 #include <red_black_tree.h>
+#include <bloom_filter.h>
 
 #define TEST_DATA_SIZE 1000;
 
@@ -17,16 +18,19 @@ void testLL();
 void testBST();
 void testHASH();
 void testRBT();
+void testBF();
 
 int main(int argc, char **argv) {
 
-	testLL();
+	//testLL();
 
 	//testBST();
 
 	//testHASH();
 
 	//testRBT();
+
+	testBF();
 
 	return 0;
 }
@@ -134,4 +138,19 @@ void testHASH() {
 	printf("Total time: %ld microseconds\n", ((end.tv_sec * 1000000 + end.tv_usec)
 		  - (start.tv_sec * 1000000 + start.tv_usec)));
 	printf("Test complete!\n");
+}
+
+void testBF() {
+	struct bloom_filter *bloom;
+	bloom=NULL;
+
+	bloom=init_bloom_filter(bloom);
+
+	add_to_bloom_filter(bloom,"bob");
+	add_to_bloom_filter(bloom,"tim");
+
+	search_bloom_filter(bloom,"bob");
+	search_bloom_filter(bloom,"alice");
+	search_bloom_filter(bloom,"tim");
+	search_bloom_filter(bloom,"Tim");
 }
