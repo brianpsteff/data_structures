@@ -1,5 +1,6 @@
 This is a simple library of various general data structures and sorting algorithms. Current data structures include:
 	Linked Lists
+	Double Linked Lists
 	Binary Search Trees
 	Hash Tables
 	Bloom Filters
