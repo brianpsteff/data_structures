@@ -206,5 +206,11 @@ void testDLL() {
 	add_new_node_dll(root,25);
 	add_new_node_dll(root,35);
 
+	print_forward_back_dll(root,3,2);
+	
+	remove_node_dll(root,25);
+	remove_node_dll(root,5);
+
 	print_out_dll(root);
+
 }
