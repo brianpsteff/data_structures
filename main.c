@@ -9,6 +9,7 @@
 #include <red_black_tree.h>
 #include <bloom_filter.h>
 #include <queue.h>
+#include <double_linked_list.h>
 
 #define TEST_DATA_SIZE 1000;
 
@@ -21,6 +22,7 @@ void testHASH();
 void testRBT();
 void testBF();
 void testQ();
+void testDLL();
 
 int main(int argc, char **argv) {
 
@@ -34,7 +36,9 @@ int main(int argc, char **argv) {
 
 	//testBF();
 	
-	testQ();
+	//testQ();
+
+	testDLL();
 
 	return 0;
 }
@@ -189,4 +193,18 @@ void testQ() {
 	
 	printf("Popped from queue: %d\n",pop_queue(my_queue));
 	printf("Popped from queue: %d\n",pop_queue(my_queue));
+}
+
+void testDLL() {
+
+	struct double_node *root=NULL;
+
+	root=create_new_dll();
+
+	add_new_node_dll(root,5);
+	add_new_node_dll(root,15);
+	add_new_node_dll(root,25);
+	add_new_node_dll(root,35);
+
+	print_out_dll(root);
 }
