@@ -28,9 +28,7 @@ extern void add_new_node_ll(struct node *head, int data) {
 			temp=temp->next;
 		}
 		temp->next = (struct node *)malloc(sizeof(struct node));
-		temp=temp->next;
 		temp->data=data;
-		temp->next=NULL;
 	}
 
 }
@@ -79,7 +77,7 @@ extern void print_out_ll(struct node *head) {
 		fprintf(stdout, "%d->", temp->data);
 		temp=temp->next;
 	}
-	fprintf(stdout, "%d->NULL\n\n", temp->data);	
+	fprintf(stdout, "NULL\n\n");	
 }
 
 /*Return the total elements in the LL*/
