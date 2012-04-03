@@ -31,6 +31,20 @@ void add_new_node_dll(struct double_node *root, int val) {
 
 void remove_node_dll(struct double_node *root, int val) {
 
+	if(root->data==val) {
+		root=root->next;
+		//free(root->prev);
+		return;
+	}
+
+	while(root->next != NULL) {
+		if(root->data==val) {
+			root->next->prev=root->prev;
+			root->prev->next=root->next;
+			free(root);
+		}
+		root=root->next;
+	}
 }
 
 void print_out_dll(struct double_node *root) {
@@ -39,4 +53,18 @@ void print_out_dll(struct double_node *root) {
 		root=root->next;
 	}
 	printf("NULL\n");
+}
+
+void print_forward_back_dll(struct double_node *root, int forward, int back) {
+	
+	struct double_node *temp = root;
+	int i;
+
+	for(i=0;i<forward;i++) {
+		temp=temp->next;
+	}
+	for(i=0;i<back;i++) {
+		temp=temp->prev;
+	}
+	printf("Val is: %d\n",temp->data);
 }
