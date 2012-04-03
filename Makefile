@@ -4,14 +4,14 @@ CFLAGS=-I. -Wall
 LIBCC=ar
 LIBFLAGS=-cvq
 
-main: linked_list.o bst.o hash_table.o red_black_tree.o bloom_filter.o queue.o main.c 
-	$(CC) $(CFLAGS) -o main linked_list.o bst.o hash_table.o red_black_tree.o bloom_filter.o queue.o main.c
+main: linked_list.o bst.o hash_table.o red_black_tree.o bloom_filter.o queue.o double_linked_list.o main.c 
+	$(CC) $(CFLAGS) -o main linked_list.o bst.o hash_table.o red_black_tree.o bloom_filter.o queue.o double_linked_list.o main.c
 
-lib:  linked_list.o bst.o hash_table.o red_black_tree.o bloom_filter.o queue.o
-	$(LIBCC) $(LIBFLAGS) libdstructs.a linked_list.o bst.o hash_table.o red_black_tree.o bloom_filter.o queue.o
+lib:  linked_list.o bst.o hash_table.o red_black_tree.o bloom_filter.o queue.o double_linked_list.o
+	$(LIBCC) $(LIBFLAGS) libdstructs.a linked_list.o bst.o hash_table.o red_black_tree.o bloom_filter.o queue.o double_linked_list.o
 
-test: linked_list.o bst.o hash_table.o red_black_tree.o bloom_filter.o queue.o main.c
-	$(CC) -g $(CFLAGS) -o main linked_list.o bst.o hash_table.o red_black_tree.o bloom_filter.o queue.o main.c
+test: linked_list.o bst.o hash_table.o red_black_tree.o bloom_filter.o queue.o double_linked_list.o main.c
+	$(CC) -g $(CFLAGS) -o main linked_list.o bst.o hash_table.o red_black_tree.o bloom_filter.o queue.o double_linked_list.o main.c
 	bash -c "if [ ! -f ./rand_data.txt ]; then ./generate_rand.bash; fi"
 
 linked_list.o: linked_list.c
@@ -31,6 +31,9 @@ bloom_filter.o: bloom_filter.c
 
 queue.o: queue.c
 	$(CC) $(CFLAGS) -c queue.c
+
+double_linked_list.o: double_linked_list.c
+	$(CC) $(CFLAGS) -c double_linked_list.c
 
 clean:
 	rm -f *.o main libdstructs.a rand_keys.txt rand_data.txt
