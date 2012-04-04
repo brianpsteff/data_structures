@@ -27,7 +27,7 @@ void testDLL();
 int main(int argc, char **argv) {
 
 	//testLL();
-
+	
 	//testBST();
 
 	//testHASH();
@@ -48,7 +48,7 @@ void testLL() {
   int i;
   int storeUs[6] = {5,10,15,7,2,2};
 
-	struct node *head = NULL;
+	struct list_head *head = NULL;
 
 	head=create_new_ll();
 
@@ -73,6 +73,8 @@ void testLL() {
 	printf("Does the element 100 exist in the list: %s\n", \
 					does_element_exist_ll(head,100) ? "Yes!" : "No");
 	printf("Is the list empty? %s\n",is_list_empty(head) ? "Yes" : "No");
+
+	free_ll(head);
 }
 
 void testBST() {
@@ -208,10 +210,9 @@ void testDLL() {
 	
 	print_out_dll(root);
 	
-	print_forward_back_dll(root,3,2);
+	//print_forward_back_dll(root,3,2);
 	
 	remove_node_dll(root,25);
 	remove_node_dll(root,5);
 	print_out_dll(root);
-
 }
