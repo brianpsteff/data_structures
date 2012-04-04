@@ -4,9 +4,13 @@ struct double_node {
 	struct double_node *prev;
 };
 
+struct double_list_head {
+	struct double_node *start;
+};
+
 /*External functions*/
-struct double_node * create_new_dll();
-void add_new_node_dll(struct double_node *, int);
-void remove_node_dll(struct double_node *, int);
-void print_out_dll(struct double_node *);
-void print_forward_back_dll(struct double_node *, int, int);
+struct double_list_head * create_new_dll();
+void add_new_node_dll(struct double_list_head *, int);
+void remove_node_dll(struct double_list_head *, int);
+void print_out_dll(struct double_list_head *);
+void print_forward_back_dll(struct double_list_head *, int, int);

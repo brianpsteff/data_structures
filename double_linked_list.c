@@ -3,20 +3,21 @@
 
 #include <double_linked_list.h>
 
-struct double_node * create_new_dll() {
-	struct double_node *root = NULL;
-	root=(struct double_node *)malloc(sizeof(struct double_node));
+struct double_list_head * create_new_dll() {
+	struct double_list_head *root = NULL;
+	root=(struct double_list_head *)malloc(sizeof(struct double_list_head));
+	root->start=(struct double_node *)malloc(sizeof(struct double_node));
 	return root;
 }
 
-void add_new_node_dll(struct double_node *root, int val) {
+void add_new_node_dll(struct double_list_head *root, int val) {
 
-	struct double_node *temp = root;
+	struct double_node *temp = root->start;
 
-	if(root->next == NULL) {
-		root->data=val;
-		root->next=(struct double_node *)malloc(sizeof(struct double_node));
-		root->next->prev=root;
+	if(temp->next == NULL) {
+		temp->data=val;
+		temp->next=(struct double_node *)malloc(sizeof(struct double_node));
+		temp->next->prev=root->start;
 	}
 	else {
 		while(temp->next != NULL) {
@@ -29,35 +30,41 @@ void add_new_node_dll(struct double_node *root, int val) {
 	}
 }
 
-void remove_node_dll(struct double_node *root, int val) {
+void remove_node_dll(struct double_list_head *root, int val) {
 
-	if(root->data==val) {
-		root=root->next;
-		//free(root->prev);
+	struct double_node *temp = root->start;
+	
+	/*Head node must be removed */
+	if(temp->data==val) {
+		root->start=temp->next;
+		free(temp);
 		return;
 	}
 
-	while(root->next != NULL) {
-		if(root->data==val) {
-			root->next->prev=root->prev;
-			root->prev->next=root->next;
-			free(root);
+	while(temp->next != NULL) {
+		if(temp->data==val) {
+			temp->next->prev=temp->prev;
+			temp->prev->next=temp->next;
+			free(temp);
 		}
-		root=root->next;
+		temp=temp->next;
 	}
 }
 
-void print_out_dll(struct double_node *root) {
-	while(root->next != NULL) {
-		printf("%d->",root->data);
-		root=root->next;
+void print_out_dll(struct double_list_head *root) {
+	struct double_node *temp = root->start;
+	
+	while(temp->next != NULL) {
+		printf("%d->",temp->data);
+		temp=temp->next;
 	}
 	printf("NULL\n");
 }
 
-void print_forward_back_dll(struct double_node *root, int forward, int back) {
+void print_forward_back_dll(struct double_list_head *root, int forward, \
+															int back) {
 	
-	struct double_node *temp = root;
+	struct double_node *temp = root->start;
 	int i;
 
 	for(i=0;i<forward;i++) {
